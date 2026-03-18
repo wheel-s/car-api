@@ -1,0 +1,15 @@
+__pychche__/
+*.pyc
+*.pyo
+
+vevv/
+# requirements_dev.txt
+.env*
+rubbish/
+pipeline/
+*.db
+*.sqlite3
+
+.pytest_cache/
+
+.DS_Store/
