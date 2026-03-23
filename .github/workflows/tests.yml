@@ -1,0 +1,47 @@
+name: pr tests
+
+on:
+  pull_request: 
+    branches: [develop, main]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up python
+        uses: actions/setup-python@v5
+        with: 
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip -m install --upgrade pip
+          pip install requirements.txt
+          pip install requirements_dev.txt
+      
+      - name: run tests
+        run-test: pytest -v --maxfail=0 --disable-warnings --cov=app
+
+  style:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup python
+        uses: actions/python@v5
+        with: 
+         python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requiements_dev.txt
+          black --check .
+          
+
+    

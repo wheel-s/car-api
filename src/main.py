@@ -21,21 +21,19 @@ app.add_middleware(
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
 
 register_routes(app)
-from. logging import setup_logging, get_logger
+from .logging import setup_logging, get_logger
 
-
-#setup_logging()
+# setup_logging()
 
 logger = get_logger("app")
 
+
 @app.get("/")
-def get_all(request:Request, name:Annotated[str | None, Query(max_length=20)]):
-    logger.info(f"halpdsc", extra={"Ip":request.client.host, "url":request.url.path})
+def get_all(request: Request, name: Annotated[str | None, Query(max_length=20)]):
+    logger.info(f"halpdsc", extra={"Ip": request.client.host, "url": request.url.path})
     print(name)
     return {"status": "Success"}
-    
-

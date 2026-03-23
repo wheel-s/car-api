@@ -16,6 +16,7 @@ SessionLocal = sessionmaker(autoflush=True, autocommit=False, bind=engine)
 
 Base = declarative_base()
 
+
 def get_db():
     db = SessionLocal()
     try:
@@ -23,5 +24,5 @@ def get_db():
     finally:
         db.close()
 
-DbSession = Annotated[Session, Depends(get_db)]
 
+DbSession = Annotated[Session, Depends(get_db)]
