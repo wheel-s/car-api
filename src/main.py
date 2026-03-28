@@ -37,9 +37,3 @@ def get_all(request: Request, name: Annotated[str | None, Query(max_length=20)])
     logger.info(f"halpdsc", extra={"Ip": request.client.host, "url": request.url.path})
     print(name)
     return {"status": "Success"}
-
-
-
-
-
-

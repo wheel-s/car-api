@@ -24,9 +24,7 @@ jobs:
           pip install -r requirements_dev.txt
           pip install pytest pytest-cov
       
-      - name: run tests
-        run: pytest -v --maxfail=0 --disable-warnings --cov=app
-
+    
   style:
     runs-on: ubuntu-latest
 

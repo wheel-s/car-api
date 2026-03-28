@@ -2,6 +2,7 @@ from fastapi import HTTPException
 
 from sqlalchemy.orm import Session
 from ..entities.car_specs import carSpecs
+
 # from ..entities.cars import Brand, Car
 from . import model
 from ..auth.models import TokenData
