@@ -25,7 +25,7 @@ jobs:
           pip install pytest pytest-cov
       
       - name: run tests
-        run-test: pytest -v --maxfail=0 --disable-warnings --cov=app
+        run: pytest -v --maxfail=0 --disable-warnings --cov=app
 
   style:
     runs-on: ubuntu-latest
