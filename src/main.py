@@ -59,7 +59,7 @@ def get_all(request: Request):
     # print(name)
     return """
             <h2> Welcome to FastAPI Google OAuth2 Login</h2>
-            <a href="http:127.0.0.1:8000/login">Login with Google</a>
+            <a href="/login">Login with Google</a>
 
             """
 
