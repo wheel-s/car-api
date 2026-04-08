@@ -3,10 +3,10 @@ from src.users.controller import router as users_router
 from src.auth.controller import router as auth_router
 
 # from src.make.controller import router as todo_router
-from src.car.controller import router as car_router
-from src.car.controller import image_router as image_router
+from src.car.car_controller import router as car_router
+from src.car.image_controller import image_router
 from src.car_specs.controller import router as specs_router
-from src.car.controller import brand_router as brand_router
+from src.car.brand_controller import brand_router
 from src.favourites.controller import router as fav_router
 
 

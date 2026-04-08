@@ -6,6 +6,7 @@ from ..entities.cars import Car, Brand
 from ..entities.car_specs import carSpecs
 from ..entities.car_Images import CarImages
 from . import model
+from ..car_specs.model import specResponse
 import logging
 
 logger = logging.getLogger("cars")
@@ -45,8 +46,10 @@ def get_brand_by_id(db: Session, brand_id: UUID) -> model.brandResponse:
 def get_all_cars(db: Session, limit, page) -> list[model.carResponse]:
     offset = limit * (page - 1)
     cars = db.query(Car).offset(offset).limit(limit).offset(offset).limit(limit).all()
+    count = db.query(Car).count()
+    print(count)
     logger.info(f"Retrieved all  car data")
-    return cars
+    return cars, count
 
 
 def get_car_and_brands_by_year(db: Session, year: int, brand_name: str, limit, page):
@@ -64,9 +67,11 @@ def get_car_and_brands_by_year(db: Session, year: int, brand_name: str, limit, p
     return cars
 
 
-def get_spec_by_model(db: Session, model_name: str, limit, page):
+def get_spec_by_model(db: Session, model_name: str, limit, page) -> specResponse:
     print(model_name)
     car = db.query(Car).filter(Car.unique_name.ilike(f"%{model_name}%")).first()
+    if not car:
+        return {"detail": "car not found"}
     spec = db.query(carSpecs).filter(carSpecs.car_id == car.id).first()
     logger.info(f"Retrieved all  car data")
     return spec
@@ -85,7 +90,8 @@ def search_by_model(db: Session, model: str):
     cars = db.query(Car).filter(Car.model.ilike(f"%{model}%")).all()
     if not cars:
         logger.info(f"Failed to retrieve car with id: {model}")
-        raise HTTPException(status_code=404, detail="car data not found")
+        return []
+        # raise HTTPException(status_code=404, detail="car data not found")
     logger.info(f"rettrieved car with id: {model}")
     return cars
 
