@@ -7,7 +7,6 @@ from ..database.core import DbSession
 from . import service
 from . import model
 
-
 image_router = APIRouter(prefix="/images", tags=["Images"])
 
 
