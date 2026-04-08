@@ -10,11 +10,12 @@ load_dotenv()
 
 Database_URL = os.getenv("Database_URL")
 
-engine = create_engine(Database_URL, echo=True)
+engine = create_engine(Database_URL)
 
 SessionLocal = sessionmaker(autoflush=True, autocommit=False, bind=engine)
 
 Base = declarative_base()
+
 
 def get_db():
     db = SessionLocal()
@@ -23,5 +24,5 @@ def get_db():
     finally:
         db.close()
 
-DbSession = Annotated[Session, Depends(get_db)]
 
+DbSession = Annotated[Session, Depends(get_db)]
