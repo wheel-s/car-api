@@ -42,11 +42,19 @@ jobs:
           pip install -r requirements_dev.txt
           black --check .
   
+<<<<<<< HEAD
   # create_image:
   #   runs-on: ubuntu-latest
 
 
   #   steps:
+=======
+  create_image:
+    runs-on: ubuntu-latest
+
+
+    steps:
+>>>>>>> 552cf13 (refactored /car rorutes)
     
           
 
