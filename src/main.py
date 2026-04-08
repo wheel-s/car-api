@@ -245,7 +245,6 @@ async def profile(request: Request):
 import requests
 import base64
 
-
 gh_token = os.getenv("gh_token")
 
 headers = {
